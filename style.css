@@ -1,0 +1,236 @@
+* {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-size: 25px;
+  font-family: 'Times New Roman', 'DFKai-sb';
+}
+body {
+  display: table;
+  margin: auto;
+  background-color: #90ee90;
+}
+.overlay {
+  position: fixed;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+.rules {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #90ee90;
+  height: 80%;
+  width: 80%;
+  overflow-y: auto;
+  margin: auto;
+}
+.rules p, .rules b {
+  text-align: justify;
+  vertical-align: baseline;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.rules p {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+h1 {
+  font-size: 40px;
+  padding: 3px;
+}
+.subtitle {
+  font-size: 30px;
+  padding: 3px;
+}
+table {
+  width: 90%;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: auto;
+  padding: 3px;
+}
+table summary, .pair, .explanation {
+  text-align: justify;
+}
+.beginning {
+  text-align: right;
+  opacity: 0.5;
+}
+.end, .missingtile {
+  text-align: left;
+}
+li {
+  list-style-position: inside;
+  text-align: justify;
+}
+.bar {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+}
+.remaining, .remainingtiles, .dice, .dicenumbers {
+  border: solid 2px #E41B17;
+  padding: 3px;
+  vertical-align: baseline;
+}
+.placeNS, .placeWE {
+  padding: 3px;
+}
+button {
+  height: 100%;
+  width: 100%;
+  background-color: #121212;
+  color: #fffafa;
+  cursor: pointer;
+  padding: 3px;
+  vertical-align: baseline;
+}
+button:hover {
+  background-color: #242424;
+}
+.close {
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  top: 10px;
+  right: 10px;
+  padding: 3px;
+}
+.top, .bottom {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.top1 {
+  border: solid 2px #E41B17;
+  display: grid;
+  grid-template-columns: 1fr 1fr 8fr;
+  height: 100%;
+}
+.bottom2 {
+  border: solid 2px #E41B17;
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
+  height: 100%;
+}
+.top2, .bottom1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.top1 img, .top2 img, .bottom1 img, .bottom2 img, .discard img {
+  display: inline-block;
+  height: 40px;
+}
+.bottom2 img {
+  cursor: pointer;
+}
+.tilesWE, .drawingWE {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.middle {
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+}
+.left, .right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.left1 {
+  border: solid 2px #E41B17;
+  display: grid;
+  grid-template-rows: 8fr 1fr 1fr;
+  height: 100%;
+}
+.right2 {
+  display: grid;
+  border: solid 2px #E41B17;
+  grid-template-rows: 1fr 1fr 8fr;
+  height: 100%;
+}
+.left2, .right1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.left1 img, .left2 img, .right1 img, .right2 img {
+  width: 40px;
+}
+.tilesNS, .drawingNS {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.center {
+  border: solid 2px #E41B17;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
+}
+.center-top, .center-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.center-left, .center-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.center-top img, .center-bottom img {
+  display: inline-block;
+  height: 40px;
+}
+.center-left img, .center-right img {
+  width: 40px;
+}
+.center-middle {
+  display: grid;
+  grid-template-rows: 6fr 4fr;
+}
+.discard {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  align-content: flex-start;
+}
+.information b {
+  vertical-align: baseline;
+}
+.form {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+select {
+  height: 100%;
+  width: 100%;
+  background-color: #121212;
+  color: #fffafa;
+  cursor: pointer;
+}
+select:hover {
+  background-color: #242424;
+}

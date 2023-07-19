@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taiwanese 16-Tile Mahjong</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <script src="./design.js"></script>
+  </head>
+  <body>
+    <div class="overlay" id="overlay">
+        <div class="rules">
+            <h1>Game Tutorial</h1>
+            <details open>
+                <summary class="subtitle">A. Tiles</summary>
+                <p>There are 144 Mahjong tiles in total, including 136 <b>regular</b> tiles and 8 <b>bonus</b> tiles. The following table shows all of them.</p>
+                <table>
+                    <tr>
+                        <th colspan="5">Regular</th>
+                        <th colspan="2">Bonus</th>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Suits</td>
+                        <td colspan="2">Honors</td>
+                        <td>Seasons</td>
+                        <td>Flowers</td>
+                    </tr>
+                    <tr>
+                        <td>Characters</td>
+                        <td>Sticks</td>
+                        <td>Dots</td>
+                        <td>Winds</td>
+                        <td>Dragons</td>
+                        <td rowspan="2">Spring 🀦<br>Summer 🀧<br>Autumn 🀨<br>Winter 🀩</td>
+                        <td rowspan="2">Plum 🀢<br>Orchid 🀣<br>Bamboo 🀤<br>Chrysanthemum 🀥</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">1 🀇🀇🀇🀇<br>2 🀈🀈🀈🀈<br>3 🀉🀉🀉🀉<br>4 🀊🀊🀊🀊<br>5 🀋🀋🀋🀋<br>6 🀌🀌🀌🀌<br>7 🀍🀍🀍🀍<br>8 🀎🀎🀎🀎<br>9 🀏🀏🀏🀏</td>
+                        <td rowspan="4">1 🀐🀐🀐🀐<br>2 🀑🀑🀑🀑<br>3 🀒🀒🀒🀒<br>4 🀓🀓🀓🀓<br>5 🀔🀔🀔🀔<br>6 🀕🀕🀕🀕<br>7 🀖🀖🀖🀖<br>8 🀗🀗🀗🀗<br>9 🀘🀘🀘🀘</td>
+                        <td rowspan="4">1 🀙🀙🀙🀙<br>2 🀚🀚🀚🀚<br>3 🀛🀛🀛🀛<br>4 🀜🀜🀜🀜<br>5 🀝🀝🀝🀝<br>6 🀞🀞🀞🀞<br>7 🀟🀟🀟🀟<br>8 🀠🀠🀠🀠<br>9 🀡🀡🀡🀡</td>
+                        <td>East 🀀🀀🀀🀀<br>South 🀁🀁🀁🀁<br>West 🀂🀂🀂🀂<br>North 🀃🀃🀃🀃</td>
+                        <td>Red 🀄🀄🀄🀄<br>Green 🀅🀅🀅🀅<br>White 🀆🀆🀆🀆</td>
+                    </tr>
+                </table>
+            </details>
+            <details>
+                <summary class="subtitle">B. Seats and Deals</summary>
+                <p>There are 4 seats in total: <b>East</b> (東), <b>South</b> (南), <b>West</b> (西), and <b>North</b> (北). The player is at <b>East</b>’s seat.</p>
+                <p>In front of each seat is a row of tiles, 18-tile long and 2-tile high, 36 tiles in total. The 4 rows of tiles form the 144-tile wall.</p>
+                <p>The deal starts by <b>East</b> throwing 3 dice. The sum of dice decides where to start taking the tiles and where the <b>end</b> and the <b>beginning</b> of the wall are. The following table illustrates further details.</p>
+                <table>
+                    <tr>
+                        <th>Starting Seat</th>
+                        <th>Sum of Dice</th>
+                        <th>Beginning of Wall</th>
+                        <th>End of Wall</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">East</td>
+                        <td>5</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td class="beginning">🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">South</td>
+                        <td>6</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td class="beginning">🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td class="beginning"></td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">West</td>
+                        <td>3</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td class="beginning">🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">North</td>
+                        <td>4</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td class="beginning">🀫🀫🀫🀫🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td class="beginning">🀫🀫</td>
+                        <td class="end">🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫</td>
+                    </tr>
+                </table>
+                <p>The order of taking the tiles is <b>East</b>, <b>South</b>, <b>West</b>, and <b>North</b> (counterclockwise). Each player takes 2 stacks of tiles for 4 times, 4 tiles each time, 16 tiles in total.</p>
+                <p>The direction of taking the tiles is clockwise, from the right to the left (←). After everyone gets a hand of 16 tiles, <b>East</b> takes 1 more tile.</p>
+                <p>If the hand includes <b>Seasons</b> or <b>Flowers</b>, all of them are placed face-up in front of the players’ hand and replaced by the tiles from the <b>end</b> of the wall. The order is also <b>East</b>, <b>South</b>, <b>West</b>, and <b>North</b>.</p>
+                <p>The direction of replacing tiles is from the left to the right (→). If the replaced tile is also one of <b>Seasons</b> or <b>Flowers</b>, do the same thing mentioned above after each player does the replacement.</p>
+            </details>
+            <details>
+                <summary class="subtitle">C. Playing</summary>
+                <p>The game starts by <b>East</b> discarding 1 tile from the hand to the middle of the wall.</p>
+                <p>Each player takes 1 tile from the <b>beginning</b> of the wall to the hand, and then discards 1 tile from the hand to the middle.</p>
+                <p>Again, the order of taking and discarding 1 tile is <b>East</b>, <b>South</b>, <b>West</b>, and <b>North</b>.</p>
+                <p>In order to win the game, each player needs to gather 6 sets of tiles as soon as possible.</p>
+                <p>The hand must consist of 1 set of <b>Pair</b> and any combination of 5 sets of <b>Kong</b>, <b>Pung</b>, or <b>Chow</b>.</p>
+                <p>There are 4 kinds of sets: <b>Kong</b>, <b>Pung</b>, <b>Chow</b>, and <b>Pair</b>. The following table displays all of them in detail.</p>
+                <table class="C">
+                    <tr>
+                        <th style="width: calc(40%/3);">Sets</th>
+                        <th style="width: calc(40%/3);">Definition</th>
+                        <th style="width: calc(40%/3);">Examples</th>
+                        <th style="width: 60%;">Rules with Scenarios</th>
+                    </tr>
+                    <tr>
+                        <td>Kong</td>
+                        <td>A set of 4 identical tiles</td>
+                        <td>🀀🀀🀀🀀</td>
+                        <td>
+                            <details>
+                                <summary>Scenario 1: Suppose <b>East</b> has a set of identical tiles “🀀🀀🀀” in the hand.</summary>
+                                <ol>
+                                    <li>When <b>South</b>, <b>West</b>, or <b>North</b> discards the tile “🀀” to the middle, <b>East</b> can claim “<b>Kong</b>”.</li>
+                                    <li>After claiming, <b>East</b> takes the discarded tile “🀀” to meld with its 3 identical tiles “🀀🀀🀀”, and then places them face-up in front of his/her hand.</li>
+                                    <li>After that, <b>East</b> takes 1 tile from the <b>end</b> of the wall to the hand, and then discards 1 tile from the hand to the middle.</li>
+                                    <li>After the tile discarded, if no one claims “<b>Kong</b>”, “<b>Pung</b>”, or “<b>Chow</b>”, the next player of <b>East</b>, <b>South</b>, continues the game.</li>
+                                    <li>The other players (<b>South</b>, <b>West</b>, <b>North</b>) do the same thing as <b>East</b> when they can claim “<b>Kong</b>”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Scenario 2: Suppose <b>East</b> has a set of identical tiles “🀀🀀🀀” in the hand.</summary>
+                                <ol>
+                                    <li>When <b>East</b> takes 1 tile from the <b>beginning</b> of the wall and the taken tile is “🀀”, he/she can claim “<b>Kong</b>”.</li>
+                                    <li>After claiming, <b>East</b> melds the taken tile “🀀” with its 3 identical tiles “🀀🀀🀀”, and then places them face-down in front of his/her hand.</li>
+                                    <li>After that, <b>East</b> takes 1 tile from the <b>end</b> of the wall to the hand, and then discards 1 tile from the hand to the middle.</li>
+                                    <li>After the tile discarded, if no one claims “<b>Kong</b>”, “<b>Pung</b>”, or “<b>Chow</b>”, the next player of <b>East</b>, <b>South</b>, continues the game.</li>
+                                    <li>The other players (<b>South</b>, <b>West</b>, <b>North</b>) do the same thing as <b>East</b> when they can claim “<b>Kong</b>”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Scenario 3: Suppose <b>East</b> has a set of identical tiles “🀀🀀🀀🀀” in the hand right after 16 tiles dealt to every player.</summary>
+                                <ol>
+                                    <li>After <b>East</b> takes 1 more tile from the <b>beginning</b> of the wall and each player’s <b>Seasons</b> or <b>Flowers</b> are replaced, <b>East</b> can claim “<b>Kong</b>”.</li>
+                                    <li>After claiming, <b>East</b> places the set of tiles “🀀🀀🀀🀀” face-down in front of his/her hand.</li>
+                                    <li>After that, <b>East</b> takes 1 tile from the <b>end</b> of the wall to the hand, and then discards 1 tile from the hand to the middle.</li>
+                                    <li>After the tile discarded, if no one claims “<b>Kong</b>”, “<b>Pung</b>”, or “<b>Chow</b>”, the next player of <b>East</b>, <b>South</b>, continues the game.</li>
+                                    <li>The other players (<b>South</b>, <b>West</b>, <b>North</b>) do the same thing as <b>East</b> when they can claim “<b>Kong</b>”. (Except for the replacement of <b>Seasons</b> or <b>Flowers</b> because this happens before game starts.)</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Scenario 4: Suppose <b>East</b> has already had a set of <b>Pung</b> “🀀🀀🀀” placed face-up in front of his/her hand.</summary>
+                                <ol>
+                                    <li>When <b>East</b> takes 1 tile from the <b>beginning</b> of the wall and the taken tile is “🀀”, he/she can claim “<b>Kong</b>”.</li>
+                                    <li>After claiming, <b>East</b> places the taken tile “🀀” face-up next to the <b>Pung</b> “🀀🀀🀀” in front of his/her hand.</li>
+                                    <li>After that, <b>East</b> takes 1 tile from the <b>end</b> of the wall to the hand, and then discards 1 tile from the hand to the middle.</li>
+                                    <li>After the tile discarded, if no one claims “<b>Kong</b>”, “<b>Pung</b>”, or “<b>Chow</b>”, the next player of <b>East</b>, <b>South</b>, continues the game.</li>
+                                    <li>The other players (<b>South</b>, <b>West</b>, <b>North</b>) do the same thing as <b>East</b> when they can claim “<b>Kong</b>”.</li>
+                                </ol>
+                            </details>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pung</td>
+                        <td>A set of 3 identical tiles</td>
+                        <td>🀙🀙🀙</td>
+                        <td>
+                            <details>
+                                <summary>Scenario: Suppose <b>East</b> has a set of identical tiles “🀙🀙” in the hand.</summary>
+                                <ol>
+                                    <li>When <b>South</b>, <b>West</b>, or <b>North</b> discards the tile “🀙” to the middle, <b>East</b> can claim “<b>Pung</b>”.</li>
+                                    <li>After claiming, <b>East</b> takes the discarded tile “🀙” to meld with its 2 identical tiles “🀙🀙”, and then places them face-up in front of his/her hand.</li>
+                                    <li>After that, <b>East</b> discards 1 tile from the hand to the middle.</li>
+                                    <li>After the tile discarded, if no one claims “<b>Kong</b>”, “<b>Pung</b>”, or “<b>Chow</b>”, the next player of <b>East</b>, <b>South</b>, continues the game.</li>
+                                    <li>The other players (<b>South</b>, <b>West</b>, <b>North</b>) do the same thing as <b>East</b> when they can claim “<b>Pung</b>”.</li>
+                                </ol>
+                            </details>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chow</td>
+                        <td>A set of 3 sequential tiles</td>
+                        <td>🀇🀈🀉</td>
+                        <td>
+                            <details>
+                                <summary>Scenario 1: Suppose <b>East</b> has a set of tiles “🀇🀉” in the hand.</summary>
+                                <ol>
+                                    <li>When the previous player, <b>North</b>, discards the tile “🀈” to the middle, <b>East</b> can claim “<b>Chow</b>”.</li>
+                                    <li>After claiming, <b>East</b> takes the discarded tile “🀈” to put it between the 2 tiles “🀇🀉”, and then places them face-up in front of his/her hand.</li>
+                                    <li>After that, <b>East</b> discards 1 tile from the hand to the middle.</li>
+                                    <li>After the tile discarded, if no one claims “<b>Kong</b>”, “<b>Pung</b>”, or “<b>Chow</b>”, the next player of <b>East</b>, <b>South</b>, continues the game.</li>
+                                    <li>The other players (<b>South</b>, <b>West</b>, <b>North</b>) do the same thing as <b>East</b> when they can claim “<b>Chow</b>”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Scenario 2: Suppose <b>East</b> has a set of tiles “🀇🀉” in the hand, and <b>South</b> has set of identical tiles “🀈🀈🀈” in the hand.</summary>
+                                <ol>
+                                    <li>When the previous player of <b>East</b>, <b>North</b>, discards the tile “🀈” to the middle, <b>East</b> can claim “<b>Chow</b>” and <b>South</b> can claim “<b>Kong</b>” .</li>
+                                    <li>Because both players want the same tile “🀈” at the same time, and the precedence of <b>Kong</b> is higher than that of <b>Chow</b>, in this case, <b>South</b> can take the discarded tile “🀈”, while <b>East</b> can’t.</li>
+                                    <li>The same rules apply to other players (<b>South</b>, <b>West</b>, <b>North</b>) if they face the similar scenarios.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Scenario 3: Suppose <b>East</b> has a set of tiles “🀇🀉” in the hand, and <b>West</b> has set of identical tiles “🀈🀈” in the hand.</summary>
+                                <ol>
+                                    <li>When the previous player of <b>East</b>, <b>North</b>, discards the tile “🀈” to the middle, <b>East</b> can claim “<b>Chow</b>” and <b>West</b> can claim “<b>Pung</b>”.</li>
+                                    <li>Because both players want the same tile “🀈” at the same time, and the precedence of <b>Pung</b> is higher than that of <b>Chow</b>, in this case, <b>West</b> can take the discarded tile “🀈”, while <b>East</b> can’t.</li>
+                                    <li>The same rules apply to other players (<b>South</b>, <b>West</b>, <b>North</b>) if they face the similar scenarios.</li>
+                                </ol>
+                            </details>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pair</td>
+                        <td>A set of 2 identical tiles</td>
+                        <td>🀐🀐</td>
+                        <td class="pair">There is no way to claim “Pair” under any circumstances.</td>
+                    </tr>
+                </table>
+                <p>The following table demonstrates under what circumstances a player can claim “<b>Kong</b>”, “<b>Pung</b>”, or “<b>Chow</b>” to take the tiles discarded by others, as well as that it is whose turn to continue the game afterwards.</p>
+                <table>
+                    <tr>
+                        <th style="width: 20%;">Player</th>
+                        <th colspan="3" style="width: 20%;">East</th>
+                        <th colspan="3" style="width: 20%;">South</th>
+                        <th colspan="3" style="width: 20%;">West</th>
+                        <th colspan="3" style="width: 20%;">North</th>
+                    </tr>
+                    <tr>
+                        <th>Tile Discarded by</th>
+                        <td style="width: calc(20%/3);">South</td>
+                        <td style="width: calc(20%/3);">West</td>
+                        <td style="width: calc(20%/3);">North</td>
+                        <td style="width: calc(20%/3);">West</td>
+                        <td style="width: calc(20%/3);">North</td>
+                        <td style="width: calc(20%/3);">East</td>
+                        <td style="width: calc(20%/3);">North</td>
+                        <td style="width: calc(20%/3);">East</td>
+                        <td style="width: calc(20%/3);">South</td>
+                        <td style="width: calc(20%/3);">East</td>
+                        <td style="width: calc(20%/3);">South</td>
+                        <td style="width: calc(20%/3);">West</td>
+                    </tr>
+                    <tr>
+                        <th>Kong</th>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <th>Pung</th>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <th>Chow</th>
+                        <td>✘</td>
+                        <td>✘</td>
+                        <td>✔</td>
+                        <td>✘</td>
+                        <td>✘</td>
+                        <td>✔</td>
+                        <td>✘</td>
+                        <td>✘</td>
+                        <td>✔</td>
+                        <td>✘</td>
+                        <td>✘</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <th>Whose Turn Afterwards</th>
+                        <td colspan="3">South</td>
+                        <td colspan="3">West</td>
+                        <td colspan="3">North</td>
+                        <td colspan="3">East</td>
+                    </tr>
+                </table>
+                <p>The melded <b>Kong</b>, <b>Pung</b>, and <b>Chow</b> placed face-up (or face-down for <b>Kong</b>) in front of the players’ hands cannot be modified until the end of the game. The only possible modification is mentioned in the Scenario 4 of <b>Kong</b>.</p>
+                <p>If one or more sets of <b>Pung/Chow</b> are already in the players’ hand after 16 tiles dealt to every player, or they can be formed after a tile taken from the <b>beginning</b> of the wall, there is no need to claim “<b>Pung/Chow</b>”, and they can be modified at will.</p>
+                <p>If the taken tile is one of <b>Seasons</b> or <b>Flowers</b>, do the replacement mentioned above until getting a regular tile.</p>
+            </details>
+            <details>
+                <summary class="subtitle">D. Mahjong and Draw</summary>
+                <p>After any player gathers 1 set of <b>Pair</b> and any combination of 5 sets of <b>Kong</b>, <b>Pung</b>, or <b>Chow</b>, he/she can simply claim “<b>Mahjong</b>” to win the game.</p>
+                <p>A player can claim “<b>Mahjong</b>” by taking 1 tile from the <b>beginning</b> or <b>end</b> of the wall to the hand, or by the tile discarded by others.</p>
+                <p>The tile can be the missing tile of a set of <b>Pung</b>, a set of <b>Chow</b>, even a set of <b>Pair</b>.</p>
+                <p>The following table shows some examples of hands and explains what the missing tile can be to claim “<b>Mahjong</b>”.</p>
+                <table>
+                    <tr>
+                        <th style="width: 10%;">Sets</th>
+                        <th style="width: 25%;">Examples of Hands</th>
+                        <th style="width: 10%;">Missing Tiles</th>
+                        <th style="width: 55%;">Explanation</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Pung</td>
+                        <td>🀀🀀🀀🀀🀇🀇🀇</td>
+                        <td></td>
+                        <td rowspan="2" class="explanation">In this hand, apart from a set of <b>Kong</b> “🀀🀀🀀🀀”, a set of <b>Pung</b> “🀇🀇🀇”, and 2 sets of <b>Chow</b> “🀈🀉🀊” and “🀛🀜🀝”, there are 2 sets of <b>Pair</b> “🀍🀍” and “🀐🀐”. In order to claim “<b>Mahjong</b>”, 1 set of <b>Pair</b> can just become 1 set of <b>Pung</b>. Therefore, the missing tile can be either “🀍” or “🀐”.</td>
+                    </tr>
+                    <tr>
+                        <td>🀈🀉🀊🀍🀍🀐🀐🀛🀜🀝</td>
+                        <td>🀍/🀐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Chow</td>
+                        <td>🀀🀀🀀🀀🀇🀇🀇<br></td>
+                        <td></td>
+                        <td rowspan="2" class="explanation">In this hand, apart from a set of <b>Kong</b> “🀀🀀🀀🀀”, 2 sets of <b>Pung</b> “🀇🀇🀇” and “🀍🀍🀍”, a set of <b>Chow</b> “🀛🀜🀝”, and a set of <b>Pair</b> “🀐🀐”, there is a set of tiles “🀈🀉”. In order to claim “<b>Mahjong</b>”, the set of tiles “🀈🀉” can just become a set of <b>Chow</b>. Therefore, the missing tile can be either “🀇” or “🀊”.</td>
+                    </tr>
+                    <tr>
+                        <td>🀈🀉🀍🀍🀍🀐🀐🀛🀜🀝</td>
+                        <td>🀇/🀊</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Pair</td>
+                        <td>🀀🀀🀀🀀🀇🀇🀇<br></td>
+                        <td></td>
+                        <td rowspan="2" class="explanation">In this hand, apart from a set of <b>Kong</b> “🀀🀀🀀🀀”, 2 sets of <b>Pung</b> “🀇🀇🀇” and “🀍🀍🀍”, and 2 sets of <b>Chow</b> “🀈🀉🀊” and “🀛🀜🀝”, there is only 1 tile “🀐”. In order to claim “<b>Mahjong</b>”, the tile “🀐” must become a set of <b>Pair</b>. Therefore, the missing tile must be “🀐”.</td>
+                    </tr>
+                    <tr>
+                        <td>🀈🀉🀊🀍🀍🀍🀐🀛🀜🀝</td>
+                        <td>🀐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Pung/Chow</td>
+                        <td>🀀🀀🀀🀀🀛🀜🀝</td>
+                        <td></td>
+                        <td rowspan="2" class="explanation">
+                            In this hand, apart from a set of <b>Kong</b> “🀀🀀🀀🀀”, a set of <b>Pung</b> “🀍🀍🀍”, and a set of <b>Chow</b> “🀛🀜🀝”, the remaining tiles are “🀇🀇🀇🀈🀉🀐🀐”.
+                            <details>
+                                <summary>Situation 1: Make the tiles “🀇🀇” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀇🀈🀉🀐🀐”, which can be divided into a set of <b>Chow</b> “🀇🀈🀉” and a set of <b>Pair</b> “🀐🀐”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of <b>Pair</b> “🀐🀐” can become a set of <b>Pung</b>. Therefore, the missing tile can be “🀐”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Situation 2: Make the tiles “🀐🀐” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀇🀇🀇🀈🀉”, which can be divided into a set of <b>Chow</b> “🀇🀈🀉” and a set of <b>Pair</b> “🀇🀇”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of <b>Pair</b> “🀇🀇” can become a set of <b>Pung</b>. Therefore, the missing tile can be “🀇”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Situation 3: Make the tiles “🀐🀐” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀇🀇🀇🀈🀉”, which can be divided into a set of <b>Pung</b> “🀇🀇🀇” and a set of tiles “🀈🀉”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of tiles “🀈🀉” can become a set of <b>Chow</b>. Therefore, the missing tile can be either “🀇” or “🀊”.</li>
+                                </ol>
+                            </details>
+                            In short, in order to claim “<b>Mahjong</b>”, the missing tile can be “🀇”, “🀊”, or “🀐”.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>🀇🀇🀇🀈🀉🀍🀍🀍🀐🀐</td>
+                        <td>🀇/🀊/🀐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Chow/Pair</td>
+                        <td>🀀🀀🀀🀀🀍🀍🀍🀔🀕🀖</td>
+                        <td></td>
+                        <td rowspan="2" class="explanation">
+                            In this hand, apart from a set of <b>Kong</b> “🀀🀀🀀🀀”, a set of <b>Pung</b> “🀍🀍🀍”, and a set of <b>Chow</b> “🀔🀕🀖”, the remaining tiles are “🀐🀑🀑🀒🀓🀓🀓”.
+                            <details>
+                                <summary>Situation 1: Make the tiles “🀑🀑” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀐🀒🀓🀓🀓”, which can be divided into a set of <b>Pung</b> “🀓🀓🀓” and a set of tiles “🀐🀒”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of tiles “🀐🀒” can become a set of <b>Chow</b>. Therefore, the missing tile can be “🀑”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Situation 2: Make the tiles “🀓🀓” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀐🀑🀑🀒🀓”, which can be divided into a set of <b>Chow</b> “🀑🀒🀓” and a set of tiles “🀐🀑”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of tiles “🀐🀑” can become a set of <b>Chow</b>. Therefore, the missing tile can be “🀒”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Situation 3: There is not any set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀐🀑🀑🀒🀓🀓🀓”, which can be divided into a set of <b>Pung</b> “🀓🀓🀓”, a set of <b>Chow</b> “🀐🀑🀒”, and 1 tile “🀑”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the tile “🀑” must become a set of <b>Pair</b>. Therefore, the missing tile must be “🀑”.</li>
+                                </ol>
+                            </details>
+                            In short, in order to claim “<b>Mahjong</b>”, the missing tile can be either “🀑” or “🀒”.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>🀐🀑🀑🀒🀓🀓🀓</td>
+                        <td>🀑/🀒</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Pung/Chow/Pair</td>
+                        <td>🀀🀀🀀🀀🀂🀂🀂🀍🀍🀍</td>
+                        <td></td>
+                        <td rowspan="2" class="explanation">
+                            In this hand, apart from a set of <b>Kong</b> “🀀🀀🀀🀀”, 2 sets of <b>Pung</b> “🀂🀂🀂” and “🀍🀍🀍”, the remaining tiles are “🀙🀙🀚🀚🀚🀛🀛”.
+                            <details>
+                                <summary>Situation 1: Make the tiles “🀙🀙” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀚🀚🀚🀛🀛”, which can be divided into a set of <b>Pung</b> “🀚🀚🀚” and a set of <b>Pair</b> “🀛🀛”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of <b>Pair</b> “🀛🀛” can become a set of <b>Pung</b>. Therefore, the missing tile can be “🀛”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Situation 2: Make the tiles “🀚🀚” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀙🀙🀚🀛🀛”, which can be divided into a set of <b>Chow</b> “🀙🀚🀛” and a set of tiles “🀙🀛”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of tiles “🀙🀛” can become a set of <b>Chow</b>. Therefore, the missing tile can be “🀚”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Situation 3: Make the tiles “🀛🀛” become a set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀙🀙🀚🀚🀚”, which can be divided into a set of <b>Pung</b> “🀚🀚🀚” and a set of <b>Pair</b> “🀙🀙”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the set of <b>Pair</b> “🀙🀙” can become a set of <b>Pung</b>. Therefore, the missing tile can be “🀙”.</li>
+                                </ol>
+                            </details>
+                            <details>
+                                <summary>Situation 4: There is not any set of <b>Pair</b>.</summary>
+                                <ol>
+                                    <li>The remaining tiles are “🀙🀙🀚🀚🀚🀛🀛”, which can be divided into 2 sets of <b>Chow</b> “🀙🀚🀛” and “🀙🀚🀛” and 1 tile “🀚”.</li>
+                                    <li>In order to claim “<b>Mahjong</b>”, the tile “🀚” must become a set of <b>Pair</b>. Therefore, the missing tile must be “🀚”.</li>
+                                </ol>
+                            </details>
+                            In short, in order to claim “<b>Mahjong</b>”, the missing tile can be “🀙”, “🀚”, or “🀛”.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>🀙🀙🀚🀚🀚🀛🀛</td>
+                        <td>🀙/🀚/🀛</td>
+                    </tr>
+                </table>
+                <p>The game becomes a draw if there are 8 stacks of tiles, 16 tiles in total, remaining and no player can claim “<b>Mahjong</b>”.</p>
+                <p>Every time a player claims “<b>Kong</b>”, the remaining tiles to decide the draw increase a stack of tile, or 2 tiles.</p>
+            </details>
+            <details>
+                <summary class="subtitle">E. How to Play?</summary>
+                <p>Check the following table to know how to play this simple Mahjong game.</p>
+                <table>
+                    <tr>
+                        <th>Buttons/Selector/Tiles</th>
+                        <th>Functions</th>
+                    </tr>
+                    <tr>
+                        <td>Start Game</td>
+                        <td>
+                            <ul>
+                                <li>Press to start or restart the game.</li>
+                                <li>It is disabled when the game is in progress.</li>
+                                <li>It can be pressed after some player claims “<b>Mahjong</b>” or the game is a draw.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chow</td>
+                        <td>
+                            <ul>
+                                <li>When the player (<b>East</b>) can claim “<b>Chow</b>”, there will be some options to choose.</li>
+                                <li>The options will be removed after choosing.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pung</td>
+                        <td>
+                            <ul>
+                                <li>Press it when the player (<b>East</b>) can claim “<b>Pung</b>”.</li>
+                                <li>It is disabled after the player presses or the game finishes (some player claims “<b>Mahjong</b>” or the game is a draw).</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kong</td>
+                        <td>
+                            <ul>
+                                <li>Press it when the player (<b>East</b>) can claim “<b>Kong</b>”.</li>
+                                <li>It is disabled after the player presses or the game finishes (some player claims “<b>Mahjong</b>” or the game is a draw).</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pass</td>
+                        <td>
+                            <ul>
+                                <li>Press it when the player (<b>East</b>) can claim “<b>Chow</b>”, “<b>Pung</b>”, or “<b>Kong</b>” but decides not to.</li>
+                                <li>It is disabled after the player presses or the game finishes (some player claims “<b>Mahjong</b>” or the game is a draw).</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tiles</td>
+                        <td>
+                            <ul>
+                                <li>Press any tile, both the hand and the taken tile, of the player (<b>East</b>) to discard it to the middle.</li>
+                                <li>They are disabled when the player (<b>East</b>) can claim “<b>Chow</b>”, “<b>Pung</b>”, or “<b>Kong</b>” and has not decided yet.</li>
+                                <li>They are also disabled after the game finishes (some player claims “<b>Mahjong</b>” or the game is a draw).</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <p>If you are ready, just press “Start Game”.</p>
+            </details>
+            <button class="close" onclick="TurnOffTutorial()">❌</button>
+        </div>
+    </div>
+    <div class="bar">
+        <div class="game">
+            <button id="startgame" onclick="PlayDice()">Start Game</button>
+        </div>
+        <div class="remaining">Remaining Tiles:</div>
+        <div class="remainingtiles" id="RemainingNumber">144</div>
+        <div class="dice">Dice:</div>
+        <div class="dicenumbers" id="DiceNumber"></div>
+    </div>
+    <div class="top">
+        <div class="top1">
+            <div class="placeWE">西</div>
+            <div class="drawingWE"><img src="./image/背面.png" alt="背面" id="drawingtileW" style="visibility: hidden;"></div>
+            <div class="tilesWE" id="enemyW">
+                <img src="./image/背面.png" alt="背面" id="tilesW0" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW1" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW2" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW3" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW4" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW5" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW6" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW7" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW8" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW9" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW10" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW11" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW12" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW13" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW14" style="visibility: hidden;"><img src="./image/背面.png" alt="背面" id="tilesW15" style="visibility: hidden;">
+            </div>
+        </div>
+        <div class="top2" id="SuitedW"></div>
+    </div>
+    <div class="middle">
+        <div class="left">
+            <div class="left1">
+                <div class="tilesNS" id="enemyN">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN15" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN14" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN13" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN12" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN11" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN10" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN9" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN8" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN7" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN6" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN5" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN4" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN3" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN2" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN1" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesN0" style="visibility: hidden;">
+                </div>
+                <div class="drawingNS"><img src="./image/背面2.png" alt="背面" id="drawingtileN" style="visibility: hidden;"></div>
+                <div class="placeNS">北</div>
+            </div>
+            <div class="left2" id="SuitedN"></div>
+        </div>
+        <div class="center">
+            <div class="corner"></div>
+            <div class="center-top">
+                <img src="./image/背面.png" alt="背面" id="takeout1"><img src="./image/背面.png" alt="背面" id="takeout2"><img src="./image/背面.png" alt="背面" id="takeout3"><img src="./image/背面.png" alt="背面" id="takeout4"><img src="./image/背面.png" alt="背面" id="takeout5"><img src="./image/背面.png" alt="背面" id="takeout6"><img src="./image/背面.png" alt="背面" id="takeout7"><img src="./image/背面.png" alt="背面" id="takeout8"><img src="./image/背面.png" alt="背面" id="takeout9"><img src="./image/背面.png" alt="背面" id="takeout10"><img src="./image/背面.png" alt="背面" id="takeout11"><img src="./image/背面.png" alt="背面" id="takeout12"><img src="./image/背面.png" alt="背面" id="takeout13"><img src="./image/背面.png" alt="背面" id="takeout14"><img src="./image/背面.png" alt="背面" id="takeout15"><img src="./image/背面.png" alt="背面" id="takeout16"><img src="./image/背面.png" alt="背面" id="takeout17"><img src="./image/背面.png" alt="背面" id="takeout18">
+            </div>
+            <div class="corner"></div>
+            <div class="center-left">
+                <img src="./image/背面2.png" alt="背面" id="takeout0">
+                <img src="./image/背面2.png" alt="背面" id="takeout71">
+                <img src="./image/背面2.png" alt="背面" id="takeout70">
+                <img src="./image/背面2.png" alt="背面" id="takeout69">
+                <img src="./image/背面2.png" alt="背面" id="takeout68">
+                <img src="./image/背面2.png" alt="背面" id="takeout67">
+                <img src="./image/背面2.png" alt="背面" id="takeout66">
+                <img src="./image/背面2.png" alt="背面" id="takeout65">
+                <img src="./image/背面2.png" alt="背面" id="takeout64">
+                <img src="./image/背面2.png" alt="背面" id="takeout63">
+                <img src="./image/背面2.png" alt="背面" id="takeout62">
+                <img src="./image/背面2.png" alt="背面" id="takeout61">
+                <img src="./image/背面2.png" alt="背面" id="takeout60">
+                <img src="./image/背面2.png" alt="背面" id="takeout59">
+                <img src="./image/背面2.png" alt="背面" id="takeout58">
+                <img src="./image/背面2.png" alt="背面" id="takeout57">
+                <img src="./image/背面2.png" alt="背面" id="takeout56">
+                <img src="./image/背面2.png" alt="背面" id="takeout55">
+            </div>
+            <div class="center-middle">
+                <div class="discard" id="playing"></div>
+                <div class="information" id="information"></div>
+            </div>
+            <div class="center-right">
+                <img src="./image/背面2.png" alt="背面" id="takeout19">
+                <img src="./image/背面2.png" alt="背面" id="takeout20">
+                <img src="./image/背面2.png" alt="背面" id="takeout21">
+                <img src="./image/背面2.png" alt="背面" id="takeout22">
+                <img src="./image/背面2.png" alt="背面" id="takeout23">
+                <img src="./image/背面2.png" alt="背面" id="takeout24">
+                <img src="./image/背面2.png" alt="背面" id="takeout25">
+                <img src="./image/背面2.png" alt="背面" id="takeout26">
+                <img src="./image/背面2.png" alt="背面" id="takeout27">
+                <img src="./image/背面2.png" alt="背面" id="takeout28">
+                <img src="./image/背面2.png" alt="背面" id="takeout29">
+                <img src="./image/背面2.png" alt="背面" id="takeout30">
+                <img src="./image/背面2.png" alt="背面" id="takeout31">
+                <img src="./image/背面2.png" alt="背面" id="takeout32">
+                <img src="./image/背面2.png" alt="背面" id="takeout33">
+                <img src="./image/背面2.png" alt="背面" id="takeout34">
+                <img src="./image/背面2.png" alt="背面" id="takeout35">
+                <img src="./image/背面2.png" alt="背面" id="takeout36">
+            </div>
+            <div class="corner"></div>
+            <div class="center-bottom">
+                <img src="./image/背面.png" alt="背面" id="takeout54"><img src="./image/背面.png" alt="背面" id="takeout53"><img src="./image/背面.png" alt="背面" id="takeout52"><img src="./image/背面.png" alt="背面" id="takeout51"><img src="./image/背面.png" alt="背面" id="takeout50"><img src="./image/背面.png" alt="背面" id="takeout49"><img src="./image/背面.png" alt="背面" id="takeout48"><img src="./image/背面.png" alt="背面" id="takeout47"><img src="./image/背面.png" alt="背面" id="takeout46"><img src="./image/背面.png" alt="背面" id="takeout45"><img src="./image/背面.png" alt="背面" id="takeout44"><img src="./image/背面.png" alt="背面" id="takeout43"><img src="./image/背面.png" alt="背面" id="takeout42"><img src="./image/背面.png" alt="背面" id="takeout41"><img src="./image/背面.png" alt="背面" id="takeout40"><img src="./image/背面.png" alt="背面" id="takeout39"><img src="./image/背面.png" alt="背面" id="takeout38"><img src="./image/背面.png" alt="背面" id="takeout37">
+            </div>
+            <div class="corner"></div>
+        </div>
+        <div class="right">
+            <div class="right1" id="SuitedS"></div>
+            <div class="right2">
+                <div class="placeNS">南</div>
+                <div class="drawingNS"><img src="./image/背面2.png" alt="背面" id="drawingtileS" style="visibility: hidden;"></div>
+                <div class="tilesNS" id="enemyS">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS0" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS1" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS2" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS3" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS4" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS5" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS6" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS7" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS8" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS9" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS10" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS11" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS12" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS13" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS14" style="visibility: hidden;">
+                    <img src="./image/背面2.png" alt="背面" id="tilesS15" style="visibility: hidden;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom1" id="SuitedE"></div>
+        <div class="bottom2">
+            <div class="tilesWE" id="Player"></div>
+            <div class="drawingWE" id="Add"></div>
+            <div class="placeWE">東</div>
+        </div>
+    </div>
+    <div class="form">
+        <button id="Tutorial" onclick="TurnOnTutorial()">Tutorial</button>
+        <select name="Chow" id="Chow" onchange="EastWantsChow()">
+            <option value="Chow">Chow</option>
+        </select>
+        <button disabled id="Pung" onclick="EastWantsPung()">Pung</button>
+        <button disabled id="Kong" onclick="EastWantsKong()">Kong</button>
+        <button disabled id="Pass" onclick="DoNothing()">Pass</button>
+    </div>
+  </body>
+</html>
